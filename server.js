@@ -31,7 +31,6 @@ run().catch(console.error);
 const sampleDB = client.db('sample_airbnb').collection('listingsAndReviews')
 
 
-
 /* CREATE */
 /* async function createListing(client, newListing) {
     const result = await client.db("sample_airbnb").collection('listingsAndReviews').insertOne(newListing);
@@ -55,10 +54,24 @@ async function findOneListing(client, nameOfListing) {
 
 /* UPDATE */
 /* 
+async function updateListingByName(client, nameOfListing, updatedListing) {
+    const result = await client.db("sample_airbnb").collection("listingsAndReviews")
+                        .updateOne({ name: nameOfListing }, { $set: updatedListing });
 
+    console.log(`${result.matchedCount} document(s) matched the query criteria.`);
+    console.log(`${result.modifiedCount} document(s) was/were updated.`);
+}
 */
 
 /* DELETE */
+/*
+async function deleteListingByName(client, nameOfListing) {
+    const result = await client.db("sample_airbnb").collection("listingsAndReviews")
+            .deleteOne({ name: nameOfListing });
+    console.log(`${result.deletedCount} document(s) was/were deleted.`);
+}
+*/
+
 
 /* List all databases */
 /* async function listDatabases(client) {
