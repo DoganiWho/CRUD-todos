@@ -1,0 +1,29 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+    outline: 2px solid limegreen !important;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: aqua;
+}
+
+main {}
+form {}
+.todo-container {}
+
+footer {}
+
+
+/* General styles */
+.flex-container {
+    display: flex;
+}
+.flex--center {
+    align-items: center;
+    justify-content: center;
+}
