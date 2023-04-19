@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../public/style.css">
     <title>CRUD-Todo's</title>
 </head>
 <body>
@@ -12,8 +12,8 @@
         <h1 >CRUD Todos</h1>
     </header>
     <main>
-        <form action="" method="post">
-            <input type="text" name="" id="" placeholder="Add todo">
+        <form action="/todo/create/" method="POST">
+            <input type="text" name="value" placeholder="Add todo">
             <button type="submit">Submit</button>
         </form>
         <div class="todo-container">
