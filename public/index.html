@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>CRUD-Todo's</title>
+</head>
+<body>
+    <header id="navbar" class="flex-container flex--center position-fixed--wide">
+        <h1 >CRUD Todos</h1>
+    </header>
+    <main class="flex-container flex--center">
+        <form action="/todos" method="POST" id="new-todo" class="flex-container">
+            <input type="text" id="todo-name" name="todo-name" placeholder="Add new Todo">
+            <input type="text" id="todo-tags" name="todo-tags" placeholder="Tags">
+            <button type="submit" id="submit-todo">Add</button>
+        </form>
+        <div class="todos-container">
+            <p>No Todos...</p>
+        </div>
+    </main>
+    <footer class="flex-container flex--center position-fixed--wide">
+        created by DoganiWho©
+    </footer>
+    <script src="../app.js"></script>
+</body>
+</html>

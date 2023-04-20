@@ -6,17 +6,42 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: azure;
 }
 
 header {
     background-color: aqua;
+    top: 0;
 }
 
-main {}
-form {}
-.todo-container {}
+main {
+    flex-direction: column;
+    margin-top: 6rem;
 
-footer {}
+}
+
+form {
+    flex-direction: column;
+}
+
+#submit-todo {
+    width: min-content;   
+
+}
+.todos-container {
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+}
+
+footer {
+    background-color: aquamarine;
+    bottom: 0
+}
+
+
 
 
 /* General styles */
@@ -26,4 +51,10 @@ footer {}
 .flex--center {
     align-items: center;
     justify-content: center;
+}
+
+.position-fixed--wide {
+    position: fixed;
+    left: 0;
+    right: 0;
 }

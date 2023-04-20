@@ -1,37 +1,33 @@
-import Todo from "../models/app.models.js";
+import { Todo } from "../models/app.models.js";
 
-//middleware
-const getTodoByID = (req, res, next, todoId) => {
-  // todoId is coming from the router.param
-  // .findById() method will find the todo which has id==todoId
-  Todo.findById(todoId).exec((err, todo) => {
-    if (err || !todo) {
-    return res.status(400).json({
-        error: "404 todo not found",
-    });
-    }
-    // store that todo in req.todo so that other functions can use it
-    req.todo = todo;
-    // Because this is a middleware we have to call the next()
-    // which will pass the control to the next function in the middleware stack
-    next();
-  });
-}
+
+const getTodoById = (req, res, next, todoId) => {
+    // todoId is coming from the router.param
+    // .findById() method will find the todo which has id==todoId
+    Todo.findById(todoId)
+      .then((data) => {
+        if (!data) {
+          return res.status(404).json({
+            error: "404 Todo not found",
+          });
+        }
+        req.todo = todo;
+        next();
+      });
+};
 
 
 const getAllTodos = (req, res) => {
   // simply use .find() method and it will return all the todos
   Todo.find()
-    .sort("-createdAt")
-    .exec((err, todos) => {
-      // error checking
-      if (err || !todos) {
-        return res.status(400).json({
-          error: "Something went wrong in finding all todos",
-        });
-      }
-      // return all the todos in json format
-      res.json(todos);
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      res.status(400).json({
+        error:
+          err.message || "Some error occurred while retrieving todos.",
+      });
     });
 };
 
@@ -47,27 +43,22 @@ const createTodo = (req, res) => {
   const todo = new Todo(req.body);
 
   // create a todo instance by passing 'task' field from 'req.body'
-  todo.save((err, task) => {
-    if (err || !task) {
-      return res.status(400).json({
-        error: "something went wrong",
-      });
-    }
-    // todo is created
-    // send the created todo as json response
-    res.json({ task });
+  todo.save()
+  .then( data => {
+    res.json({data});
+  })
+  .catch(err => {
+    res.status(400).json({
+      error: err.message || 'an error occured while creating the Todo'
+    });
   });
 };
 
+
 const updateTodo = (req, res) => {
-  // take req.todo from getTodoById() middleware and
-  // fetch the todo that user wants to update
   const todo = req.todo;
-  // simply change the task of the todo that user want to update by
-  // the task that user has sent in req.body.task
   todo.task = req.body.task;
 
-  // simply save that updated todo
   todo.save((err, t) => {
     if (err || !t) {
       return res.status(400).json({
@@ -78,10 +69,10 @@ const updateTodo = (req, res) => {
     res.json(t);
   });
 };
+  
 
+// Delete a message with the specified messageId in the request
 const deleteTodo = (req, res) => {
-  // take req.todo from getTodoById() middleware and
-  // fetch the todo that user wants to delete
   const todo = req.todo;
   // call .remove() method to delete it
   todo.remove((err, task) => {
@@ -98,4 +89,4 @@ const deleteTodo = (req, res) => {
   });
 };
 
-export {getTodoByID, getAllTodos, getTodo, createTodo, updateTodo, deleteTodo }
+export { getTodoById, getAllTodos, getTodo, createTodo, updateTodo, deleteTodo };

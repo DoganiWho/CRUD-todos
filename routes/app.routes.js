@@ -1,13 +1,21 @@
-import express from "express";
+import express from 'express';
 const router = express.Router();
 
-// these are the controllers
-// we will create all of them in the future
-import { getAllTodos, getTodoByID, getTodo, createTodo, updateTodo, deleteTodo } from "../controllers/app.controllers.js";
+/* import controllers */
 
-//params
-// it will fetch the value from the url
-router.param("todoId", getTodoByID);
+import { 
+    createTodo, 
+    getTodoById, 
+    getTodo, 
+    deleteTodo, 
+    getAllTodos, 
+    updateTodo
+} from '../controllers/app.controllers.js';
+
+
+/* params */
+// fetch value from url
+router.param("todoId", getTodoById);
 
 // to get all the todos
 router.get("/todos/", getAllTodos);
@@ -24,5 +32,4 @@ router.put("/todo/:todoId/update", updateTodo);
 // to delete the todo
 router.delete("/todo/:todoId/delete", deleteTodo);
 
-// we will export the router to import it in the index.js
-export {router as todoRoutes};
+export { router as todosRoutes };

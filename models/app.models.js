@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
-
-const Todo = new mongoose.Schema({
-    task: {
-        type: String,
+// create template for new Todo
+const TodoSchema = new mongoose.Schema(
+    { name: {
+        type: String, 
         required: true,
-        trim: true,
-        maxLength: 30,
-    }
-}, 
-{
-    timestamps: true
-});
+        }
+    }, 
+    { tags: Array[String] },
+    { complete: Boolean },
+    { timestamps: true },
+    { collection: 'todosAndNotes'}
+);
 
-export default Todo;
+export {TodoSchema as Todo};
