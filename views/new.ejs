@@ -10,20 +10,13 @@
 <body>
     <header id="navbar" class="flex-container flex--center position-fixed--wide">
         <h1>CRUD-Todo's</h1>
-        <p id="todo-display"><%= code %></p>
     </header>
-    <%- include("_buttons.ejs", {id: locals.id}) %>
     <main class="flex-container flex--center">
-        <div id="todo-display" class="todos-container">
-            <ul id="todos"> 
-                <% for(var i=0; i<todos.length; i++) {%>
-                    <li class="todo">
-                      <span><%= todos[i].todo %></span>
-                      <span><%= todos[i].tags %></span>
-                    </li>
-                <% } %>           
-            </ul>
-        </div>
+        <form action="/todos/create" method="POST">
+            <%- include("_buttons.ejs", {canSave: true}) %>
+            <input type="text" autofocus name="todo" id="todo-name" placeholder="Todo"><%= locals.todo %></input>
+            <input type="text" name="tags" id="todo-tags" placeholder="Tags"><%= locals.tags %></input>
+        </form>
     </main>
     <footer class="flex-container flex--center position-fixed--wide">
         <span>created by DoganiWho©</span>

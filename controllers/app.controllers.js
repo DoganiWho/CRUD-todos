@@ -7,11 +7,13 @@ const getTodoById = (req, res, next, todoId) => {
   Todo.findById(todoId)
     .then((data) => {
       req.todo = data;
+      
     })
     .catch((err) => {
       res.status(404).json({
       error: "404 Todo not found", err
       });
+    next();
     });
 };
 
@@ -90,3 +92,65 @@ const deleteTodo = (req, res) => {
 };
 
 export { getTodoById, getAllTodos, getTodo, createTodo, updateTodo, deleteTodo };
+
+
+
+
+//================
+
+
+/* // create a new todo
+let todo = new Todo({
+  todo: 'make a MERN app'
+})
+
+todo.save().then(
+  doc => {
+    console.log(doc);
+  }
+).catch(err => {
+  console.error(err);
+})
+
+*/
+
+/* // find one todo
+Todo.find({
+  todo: 'make a MERN app' //search query
+}).then(
+  doc => {
+    console.log(doc);
+  }
+).catch(err => {
+  console.error(err);
+})
+*/
+
+/* //update one todo
+Todo.findOneAndUpdate({
+  todo: 'make a MERN app' //search query
+}, {
+  todo: 'connect to MongoDB'
+}, {
+  new: true // return updated doc
+}).then(
+  doc => {
+    console.log(doc);
+  }
+).catch(err => {
+  console.error(err);
+})
+
+*/
+
+/* // remove one todo
+Todo.findOneAndRemove({
+  todo: 'connect to MongoDB'
+  })
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+*/
