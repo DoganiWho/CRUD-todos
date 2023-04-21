@@ -18,9 +18,9 @@ submitBtn.addEventListener('click',  (e) => {
 */
 
 import express from 'express';
-import cors from 'cors';
 import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
+import cors from 'cors';
+// import mongoose from 'mongoose';
 
 import { todosRoutes } from './routes/app.routes.js';
 const app = express();
@@ -31,6 +31,8 @@ app.use(cors()); //to allow cross origin resource sharing
 app.use(bodyParser.json()); //to convert our request data into JSON format
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/api', todosRoutes); // include the todoRoutes
+app.set('view engine', 'ejs'); // set the view engine
+
 
 //DB connection
 const PORT = process.env.PORT || 8080;
@@ -48,8 +50,9 @@ const mongoOptions = {
     useUnifiedTopology: true
 }
 
-
+/* Mongoose
 // mongoose.Promise = global.Promise;
+
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MONGODB_URL, mongoOptions);
 const client = mongoose.connection;
@@ -70,31 +73,35 @@ client.once('open', async () => {
 client.on('error', err => {
     console.log('DB connection errors', err);
 })
+*/
 
-/* MongoClient
-// Either pass mongoOptions or serverApi as second param to the MongoClient constructor.
+ 
+// MongoClient: Either pass mongoOptions or serverApi as second param to the MongoClient constructor.
 const client = new MongoClient(MONGODB_URL, mongoOptions);
 
+const DB = client.db("CRUD-todos");
+const todosCollection= DB.collection("todosAndNotes");
 
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
-    await app.listen(PORT, () => {
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    app.listen(PORT, () => {
         console.log(`app listening on http://localhost:${PORT}`)
     });
-    // Send a ping to confirm a successful connection
-    // await client.db("admin").command({ ping: 1 });
-    // console.log("Pinged your deployment. You successfully connected to MongoDB!");
-
+    
     // await listDatabases(client);
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
   }
 }
+
 run().catch(console.error);
-*/
+
 
 // READ from database
 // Print the names of all available databases
@@ -131,22 +138,27 @@ async function createTodo(client, newTodo){
     console.log(`New listing created with the following id: ${result.insertedId}`);
 }
 
-// app.post('/todos', (req, res) =>{
-//         createTodo(client, req.body)
-//         res.redirect('/');
+// app.post('/todos/create', (req, res) =>{
+//     console.log(req.body);
+//     res.redirect('/');
 // });
 
-app.post('/todos', (req, res) => {
-    client.collection('todosAndNotes').save(req.body, (err, result) => {
-    if (err) return console.log(err)
-    console.log('saved to database')
-    res.redirect('/')
-  })
-})
+app.post('/todos/create', async (req, res) => {
+    await todosCollection.insertOne(req.body)
+    .then(() => {
+        console.log('saved to database');
+        res.redirect('/');
+    })
+    .catch(err => console.log(err));
+});
 
-// app.get('/', async (req, res) => {
-//     var cursor = await todosCollection.find()
-// })
+
+app.get('/', (req, res) => {
+    todosCollection.find().toArray(( err, result) => {
+        if (err) return console.log(err);
+        res.render('index.ejs', {todos: result})
+    })
+})
 
 /* Sample crud functions from MongoDB docs
 // video: https://www.mongodb.com/developer/languages/javascript/node-crud-tutorial/?_ga=2.228432852.895337829.1681971319-1527537142.1681971316#learn-by-video

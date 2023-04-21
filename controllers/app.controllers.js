@@ -2,31 +2,31 @@ import { Todo } from "../models/app.models.js";
 
 
 const getTodoById = (req, res, next, todoId) => {
-    // todoId is coming from the router.param
-    // .findById() method will find the todo which has id==todoId
-    Todo.findById(todoId)
-      .then((data) => {
-        if (!data) {
-          return res.status(404).json({
-            error: "404 Todo not found",
-          });
-        }
-        req.todo = todo;
-        next();
+  // todoId is coming from the router.param
+  // .findById() method will find the todo which has id==todoId
+  Todo.findById(todoId)
+    .then((data) => {
+      req.todo = data;
+    })
+    .catch((err) => {
+      res.status(404).json({
+      error: "404 Todo not found", err
       });
+    });
 };
 
 
 const getAllTodos = (req, res) => {
   // simply use .find() method and it will return all the todos
   Todo.find()
-    .then((data) => {
+    .sort("-createdAt")
+    .then(data => {
       res.json(data);
     })
     .catch((err) => {
       res.status(400).json({
         error:
-          err.message || "Some error occurred while retrieving todos.",
+          err || "Some error occurred while retrieving todos.",
       });
     });
 };
@@ -42,14 +42,14 @@ const createTodo = (req, res) => {
   // we will get json data from the frontend i.e. req.body
   const todo = new Todo(req.body);
 
-  // create a todo instance by passing 'task' field from 'req.body'
+  // create a todo instance by passing 'todo' field from 'req.body'
   todo.save()
   .then( data => {
     res.json({data});
   })
   .catch(err => {
     res.status(400).json({
-      error: err.message || 'an error occured while creating the Todo'
+      error: err || 'an error occured while creating the Todo'
     });
   });
 };

@@ -1,15 +1,19 @@
 import mongoose from "mongoose";
+import { Model, Schema } from "mongoose";
+
 // create template for new Todo
-const TodoSchema = new mongoose.Schema(
-    { name: {
+const TodoSchema = new Schema(
+    { todo: {
         type: String, 
         required: true,
-        }
+        },
     }, 
-    { tags: Array[String] },
+    { tags: {type: Array[String]} },
     { complete: Boolean },
     { timestamps: true },
     { collection: 'todosAndNotes'}
 );
 
-export {TodoSchema as Todo};
+export const Todo = mongoose.model('Todo', TodoSchema)
+
+// export {TodoSchema as Todo};
