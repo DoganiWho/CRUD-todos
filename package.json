@@ -1,25 +1,23 @@
 {
   "name": "crud-todos",
   "version": "1.0.0",
-  "description": "CRUD-todo app with express and MongoDB",
-  "type": "module",
-  "main": "app.js",
+  "description": "Building a CRUD todo-app with express and MongoDB",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node ."
+    "start": "node server.js",
+    "devStart": "nodemon server.js"
   },
-  "author": "DoganiWho",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.20.2",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "express-router": "^0.0.1",
-    "mongodb": "^5.2.0",
-    "mongoose": "^7.0.4",
-    "nodemon": "^2.0.22",
-    "path": "^0.12.7"
+    "express-ejs-layouts": "^2.5.1",
+    "mongoose": "^7.0.4"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.22"
   }
 }
