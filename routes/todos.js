@@ -33,8 +33,7 @@ router.post('/', async (req, res) => {
 
     try {
         const newTodo = await todo.save()
-        // res.redirect(`/todos/${newTodo.id}`)
-        res.redirect(`todos`)
+        res.redirect(`/todos/${newTodo.id}`)
     } catch (error) {
          res.render('todos/new', {
             todo: todo, 
@@ -42,6 +41,46 @@ router.post('/', async (req, res) => {
         });
     }
 });
+
+// view Todo
+router.get('/:id', (req, res) => {
+    res.send('Show Todo' + req.params.id);
+})
+
+// edit Todo
+router.get('/:_id/edit', async (req, res) => {
+    const todo = await Todo.findById(req.params.id)
+    try {
+        res.render('todos/edit', { todo : todo });
+    } catch (error) {
+        res.redirect('/todos')
+    }
+})
+
+// update Todo
+router.put('/:id', async (req, res) => {
+    let todo;
+    try {
+        todo = await Todo.findById(req.params.id)
+        todo.name = req.body.name
+        await todo.save()
+        res.redirect(`/todos/${newTodo.id}`)
+    } catch {
+        if (todo == null) {
+            res.redirect('/');
+        } else {
+            res.render('todos/new', {
+                todo: todo, 
+                errorMessage: 'Error updating Todo'
+            });
+        }
+    }
+})
+
+// delete Todo
+router.delete('/:id', (req, res) => {
+    res.send('Delete Todo' + req.params.id);
+})
 
 
 module.exports = router;

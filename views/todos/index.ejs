@@ -9,5 +9,9 @@
 <ul>
     <% todos.forEach( todo => { %>
         <li ><%= todo.name %></li>
+        <a href="/todos/<%= todo.is %>">View</a>
+        <a href="/todos/<%= todo.is %>/edit">Edit</a>
+        <%- include('../partials/deleteForm.ejs', 
+            { url: `/todos/${todo.id}` }) %>
     <% }) %>
 </ul>
