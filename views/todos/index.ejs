@@ -5,6 +5,9 @@
     <button type="submit">Search</button>
 </form>
 <br>
-<% todos.forEach( todo => { %>
-    <div ><%= todo.name %></div>
-<% }) %>
+<h3>Todos</h3>
+<ul>
+    <% todos.forEach( todo => { %>
+        <li ><%= todo.name %></li>
+    <% }) %>
+</ul>

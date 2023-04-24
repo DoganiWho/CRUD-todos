@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
         searchOptions.name = new RegExp(req.query.name, 'i')
     }
     try {
-        const todos = await Todo.find(searchOptions)
+        const todos = await Todo.find(searchOptions).sort('-createdAt') //sorts Todos based on last created
         res.render('todos/index.ejs', {
             todos: todos, 
             searchOptions: req.query
