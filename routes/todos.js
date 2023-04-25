@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Todo = require('../models/todo');
+const Note = require('../models/note');
 
 //All Todos Route
 router.get('/', async (req, res) => {
@@ -17,12 +18,12 @@ router.get('/', async (req, res) => {
     } catch (error) {
         res.redirect('/')
     }
-})
+});
 
 // New Todo Route
 router.get('/new', (req, res) => {
     res.render('todos/new', { todo : new Todo() });
-})
+});
 
 
 // Create Todo Route
@@ -43,19 +44,29 @@ router.post('/', async (req, res) => {
 });
 
 // view Todo
-router.get('/:id', (req, res) => {
-    res.send(`Show Todo: ${req.params.id}`);
-})
+router.get('/:id', async (req, res) => {
+    try {
+        const todo = await Todo.findById(req.params.id)
+        const notes = await Note.find({ todo: todo.id }).limit(10).exec()
+        res.render('todos/show', {
+            todo: todo, 
+            associatedNotes: notes
+        })
+    } catch (error) {
+        console.log(error);
+        res.redirect('/')
+    }
+});
 
 // edit Todo
 router.get('/:id/edit', async (req, res) => {
-    const todo = await Todo.findById(req.params.id)
     try {
+        const todo = await Todo.findById(req.params.id)
         res.render('todos/edit', { todo : todo });
     } catch (error) {
         res.redirect('/todos')
     }
-})
+});
 
 // update Todo
 router.put('/:id', async (req, res) => {
@@ -64,23 +75,35 @@ router.put('/:id', async (req, res) => {
         todo = await Todo.findById(req.params.id)
         todo.name = req.body.name
         await todo.save()
-        res.redirect(`/todos/${newTodo.id}`)
+        res.redirect(`/todos/${todo.id}`)
     } catch {
         if (todo == null) {
             res.redirect('/');
         } else {
-            res.render('todos/new', {
+            res.render('todos/edit', {
                 todo: todo, 
                 errorMessage: 'Error updating Todo'
             });
         }
     }
-})
+});
 
 // delete Todo
-router.delete('/:id', (req, res) => {
-    res.send(`Delete Todo: ${req.params.id}`);
-})
+router.delete('/:id', async (req, res) => {
+    let todo;
+    try {
+        todo = await Todo.findById(req.params.id)
+        await todo.deleteOne()
+        res.redirect('/todos')
+    } catch (error) {
+        if (todo == null) {
+            res.redirect('/');
+        } else {
+            res.redirect(`/todos/${todo.id}`)
+        }
+        console.log(error);
+    }
+});
 
 
 module.exports = router;

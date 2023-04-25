@@ -1,0 +1,9 @@
+<h2><%= todo.name %></h2>
+<a href="/todos/<%= todo.id %>/edit">Edit</a>
+<%- include('../partials/deleteForm', {url: `/todos/${todo.id}`}) %>
+<% if (associatedNotes.length > 0) { %>
+    <h2>Associated Notes</h2>
+    <% associatedNotes.forEach( note => { %>
+        <div class="note__card"><%= note.title %></div>
+    <% }) %>
+<% } %>
