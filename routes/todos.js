@@ -44,11 +44,11 @@ router.post('/', async (req, res) => {
 
 // view Todo
 router.get('/:id', (req, res) => {
-    res.send('Show Todo' + req.params.id);
+    res.send(`Show Todo: ${req.params.id}`);
 })
 
 // edit Todo
-router.get('/:_id/edit', async (req, res) => {
+router.get('/:id/edit', async (req, res) => {
     const todo = await Todo.findById(req.params.id)
     try {
         res.render('todos/edit', { todo : todo });
@@ -79,7 +79,7 @@ router.put('/:id', async (req, res) => {
 
 // delete Todo
 router.delete('/:id', (req, res) => {
-    res.send('Delete Todo' + req.params.id);
+    res.send(`Delete Todo: ${req.params.id}`);
 })
 
 

@@ -1,6 +1,6 @@
 <h2>Search Todos</h2>
 <form action="/todos" method="GET">
-    <label for="">Name</label>
+    <label for="name">Name</label>
     <input type="text" name="name" value="<%= searchOptions.name %>">
     <button type="submit">Search</button>
 </form>
@@ -9,9 +9,8 @@
 <ul>
     <% todos.forEach( todo => { %>
         <li ><%= todo.name %></li>
-        <a href="/todos/<%= todo.is %>">View</a>
-        <a href="/todos/<%= todo.is %>/edit">Edit</a>
-        <%- include('../partials/deleteForm.ejs', 
-            { url: `/todos/${todo.id}` }) %>
+        <a href="/todos/<%= todo.id %>">View</a>
+        <a href="/todos/<%= todo.id %>/edit">Edit</a>
+        <%- include('../partials/deleteForm.ejs', { url: `/todos/${todo.id}` }) %>
     <% }) %>
 </ul>
