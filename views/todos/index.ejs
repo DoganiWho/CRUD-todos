@@ -10,7 +10,7 @@
     <% todos.forEach( todo => { %>
         <li class="todo__card">
             <label >
-                <input type="checkbox">
+                <input type="checkbox" class="check" >
                 <%= todo.name %>
             </label>
             <a href="/todos/<%= todo.id %>" class="btn">View</a>

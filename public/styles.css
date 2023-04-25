@@ -1,0 +1,28 @@
+
+/* headers */
+h1 {}
+h2 {}
+h3 {}
+.title {}
+
+/* General styles */
+.btn {}
+input {}
+label {}
+form {}
+a {}
+ul {}
+li {}
+
+/* Todos */
+.todo__card {}
+
+/* Notes */
+.note__card {}
+textarea {}
+select {}
+
+/* partials */
+#header {}
+#navbar {}
+
