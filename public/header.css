@@ -37,7 +37,7 @@
     list-style: none;
 }
 
-.header__link a {
+a {
     text-decoration: none;
     color: var(--color-text-light);
     font-weight: var(--nav-link-font-weight);

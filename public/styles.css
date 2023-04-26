@@ -27,35 +27,56 @@ body {
     margin: 0 2rem;
 }
 
+/* Headers */
 .page-header {
     font-size: 2rem;
     font-weight: 500;
 }
 
-/* headers */
-h1 {}
-h2 {}
-h3 {}
-.title {}
+.subheader {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
 
 /* General styles */
-.btn {}
-input {}
-label {}
-form {}
-a {}
-ul {}
-li {}
+.flex {
+    display: flex;
+}
+
+/* cards */
+.todo__card, .note__card {
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    outline: 1px solid var(--color-btn-border);
+    border-radius: .5rem;
+    margin: 1rem 0;
+    padding: .5rem 1rem;
+    font-size: 1.2rem;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: start;
+}
+
+.btn__container {
+    gap: 1rem;
+}
 
 /* Todos */
-.todo__card {}
+/* .todo__card {} */
 
 /* Notes */
-.note__card {}
-textarea {}
-select {}
+.note__card {
+    aspect-ratio: 14/9;
+    max-width: 40%;
+}
 
-/* partials */
-#header {}
-#navbar {}
 

@@ -5,4 +5,7 @@
     --color-text-light: hsl(var(--color-base-hue), 25%, 85%);
     --color-overlay: hsl(102, 12%, 56%);
     --color-accent: hsl(23, 15%, 70%); 
+    --black: hsl(0, 14%, 1%);
+    --color-danger-hue: calc(var(--color-base-hue) - 180);
+    /* --color-disabled-hue:; */
 }

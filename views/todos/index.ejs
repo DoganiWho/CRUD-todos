@@ -2,20 +2,23 @@
 <form action="/todos" method="GET">
     <label for="name">Name</label>
     <input type="text" name="name" value="<%= searchOptions.name %>">
-    <button type="submit">Search</button>
+    <button type="submit" class="btn btn--primary">Search</button>
 </form>
 <br>
-<h3>Todos</h3>
+<h3 class="subheader">Todos</h3>
 <ul>
     <% todos.forEach( todo => { %>
-        <li class="todo__card">
+        <div class="todo__card flex">
             <label >
                 <input type="checkbox" class="check" >
                 <%= todo.name %>
             </label>
-            <a href="/todos/<%= todo.id %>" class="btn">View</a>
-            <a href="/todos/<%= todo.id %>/edit" class="btn">Edit</a>
-            <%- include('../partials/deleteForm.ejs', { url: `/todos/${todo.id}` }) %>
-        </li>
+            <div class="btn__container flex">
+                <a href="/todos/<%= todo.id %>" class="btn btn--primary">View</a>
+                <a href="/todos/<%= todo.id %>/edit" class="btn btn--primary">Edit</a>
+                <%- include('../partials/deleteForm.ejs', { url: `/todos/${todo.id}` }) %>
+            </div>
+           
+        </div>
     <% }) %>
 </ul>

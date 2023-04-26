@@ -1,5 +1,12 @@
 :root {
-    --color-btn-border: ;
+    --color-btn-border: var(--black);
+    --color-btn-primary-text: hsl(var(--color-base-hue), 25% 85%);
+    --color-btn-primary-bg: hsl(var(--color-base-hue), 25%, 20%);
+    --color-btn-primary-bg-dark: hsl(var(--color-base-hue), 25% 10%);
+    --color-btn-danger-text: var(--black);
+    --color-btn-danger-bg: hsl(var(--color-danger-hue), 25%, 85%);
+    --color-btn-disabled-text: hsl(var(--color-disabled-hue), 25%, 85%);;
+    --color-btn-disabled-bg: #333;
 }
 
 
@@ -13,4 +20,19 @@
     cursor: pointer;
     text-decoration: none;
     text-align: center;
+}
+
+.btn--primary {
+    color: var(--color-btn-primary-text);
+    background-color: var(--color-btn-primary-bg);
+}
+
+.btn--danger {
+    color: var(--color-btn-danger-text);
+    background-color: var(--color-btn-danger-bg);
+}
+
+.btn--disabled {
+    color: var(--color-btn-disabled-text);
+    background-color: var(--color-btn-disabled-bg);
 }

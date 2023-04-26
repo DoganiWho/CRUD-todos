@@ -1,6 +1,6 @@
 <h2 class="page-header">New Note</h2>
 <form action="/notes" method="post" enctype="multipart/form-data">
     <%- include('_form_fields.ejs') %>
-    <a href="/notes" class="btn">Cancel</a>
-    <button type="submit" class="btn">Create</button>
+    <a href="/notes" class="btn btn--disabled">Cancel</a>
+    <button type="submit" class="btn btn--primary">Create</button>
 </form>
