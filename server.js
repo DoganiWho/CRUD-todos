@@ -7,6 +7,8 @@ const app = express();
 const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+const path = require('path')
+// const cors = require('cors')
 
 const indexRouter = require('./routes/index');
 const todosRouter = require('./routes/todos');
@@ -18,8 +20,10 @@ app.set('views', __dirname + '/views');
 app.set('layout', 'layout/layout');
 app.use(expressLayouts);
 app.use(methodOverride('_method'));
-app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
+// app.use(cors());
+// app.use(express.static('public'));
+app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 
 //DB connection
 const mongoose = require('mongoose');

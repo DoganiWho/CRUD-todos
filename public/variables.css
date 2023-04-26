@@ -1,0 +1,6 @@
+:root {
+    --color-base-hue: 162;
+    --color-bg-dark: hsl(var(--color-base-hue), 15%, 27%);
+    --color-bg-light: hsl(var(--color-base-hue), 7%, 45%);
+    --color-text-light: hsl(var(--color-base-hue), 25%, 85%);
+}

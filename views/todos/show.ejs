@@ -1,4 +1,4 @@
-<h2><%= todo.name %></h2>
+<h2 class="page-header"><%= todo.name %></h2>
 <a href="/todos/<%= todo.id %>/edit">Edit</a>
 <%- include('../partials/deleteForm', {url: `/todos/${todo.id}`}) %>
 <% if (associatedNotes.length > 0) { %>

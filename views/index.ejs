@@ -1,3 +1,21 @@
-This is the Landing page for my CRUD Todos and Notes App!
-
-Created By DoganiWho©
+<h2 class="page-header">Recently added</h2>
+<div class="recent-todos__container">
+    <% todos.forEach(todo => { %>
+        <a href="/todos/<%= todo.id %>">
+            <label >
+                <input type="checkbox" class="check" >
+                <%= todo.name %>
+            </label>
+            <a href="/todos/<%= todo.id %>" class="btn">View</a>
+            <a href="/todos/<%= todo.id %>/edit" class="btn">Edit</a>
+            <%- include('./partials/deleteForm.ejs', { url: `/todos/${todo.id}` }) %>
+        </a>
+    <% })  %>
+</div>
+<div class="recent-notes__container">
+    <% notes.forEach( note => { %>
+        <a href="/notes/<%= note.id %>">
+            <div class="note__card"><%= note.title %></div>
+        </a>
+    <% }) %>
+</div>
