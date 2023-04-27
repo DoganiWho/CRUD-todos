@@ -28,8 +28,11 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 
 //DB connection
+const collection = 'todos'
+const MONGODB_URL = `mongodb+srv://DoganiWho:gl8OTHHDmVPzSMIG@todo-notes.pi5f4k1.mongodb.net/${collection}`
+const PORT = 8080
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URL, {
+mongoose.connect(MONGODB_URL, {
     useNewUrlParser: true, 
     useUnifiedTopology: true
 })
@@ -43,5 +46,5 @@ app.use('/todos', todosRouter);
 app.use('/notes', notesrouter);
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log(`app listening on http://localhost:${process.env.PORT || 3000}`);
+    console.log(`app listening on http://localhost:${PORT || 3000}`);
 })

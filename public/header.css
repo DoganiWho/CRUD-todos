@@ -1,5 +1,5 @@
 :root {
-    --nav-title-font-size: 3rem;
+    --nav-title-font-size: clamp(28px, 10vw, 3rem);
     --nav-title-font-weight: bold;
     --nav-link-font-weight: 300;
 }
@@ -38,12 +38,13 @@
 }
 
 a {
-    text-decoration: none;
-    color: var(--color-text-light);
-    font-weight: var(--nav-link-font-weight);
-    padding: 1rem;
+  text-decoration: none;
+  color: var(--color-text-light);
+  font-size: clamp(18px, 5vw, 2rem);
+  font-weight: var(--nav-link-font-weight);
+  padding: 1rem;
 }
 
 .header__link a:hover, .header__title:hover {
-    color: #FFF;
+    color: var(--color-accent);
 }

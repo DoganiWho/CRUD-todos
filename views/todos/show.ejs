@@ -1,6 +1,8 @@
 <h2 class="page-header"><%= todo.name %></h2>
-<a href="/todos/<%= todo.id %>/edit" class="btn btn--primary">Edit</a>
-<%- include('../partials/deleteForm', {url: `/todos/${todo.id}`}) %>
+<div class="btn__container flex">
+  <a href="/todos/<%= todo.id %>/edit" class="btn btn--primary">Edit</a>
+  <%- include('../partials/deleteForm', {url: `/todos/${todo.id}`}) %>
+</div>
 <% if (associatedNotes.length > 0) { %>
     <h2>Associated Notes</h2>
     <% associatedNotes.forEach( note => { %>

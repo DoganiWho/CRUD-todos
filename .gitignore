@@ -1,5 +1,12 @@
 .env
 node_modules/
+.config
+.git
+.devcontainer
 
 # Local Netlify folder
 .netlify
+
+# Replit config files
+.replit
+replit.nix

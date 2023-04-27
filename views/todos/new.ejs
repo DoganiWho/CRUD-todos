@@ -1,6 +1,6 @@
 <h2 class="page-header">New Todo</h2>
-<form action="/todos" method="post">
-    <%- include('_form_fields.ejs') %>
-    <a href="/todos" class="btn btn--disabled">Cancel</a>
-    <button type="submit" class="btn btn--primary">Create</button>
+<form class="add" action="/todos" method="post">
+  <%- include('_form_fields.ejs') %>
+  <a href="/todos" class="btn btn--disabled">Cancel</a>
+  <button type="submit" class="btn btn--primary">Create</button>
 </form>

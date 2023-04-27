@@ -2,6 +2,7 @@
 @import url('/public/variables.css');
 @import url('/public/header.css');
 @import url('/public/buttons.css');
+@import url('/public/footer.css');
 
 *, *::before, *::after {
     box-sizing: border-box;
@@ -38,45 +39,108 @@ body {
     font-weight: bold;
 }
 
-.footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
 /* General styles */
 .flex {
     display: flex;
 }
 
+input[type="text"], textarea {
+  background-color: var(--color-overlay);
+  border: none;
+  outline: 1px solid var(--color-btn-border);
+  border-radius: .5rem;
+  margin-right: .5rem;
+  padding: .75rem .5rem;
+  
+}
+
+.search, .add {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: .25rem;
+}
+
+#note-form {
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+
+/* Labels for checked inputs */
+input:checked + label {
+  text-decoration: line-through;
+}
+
+input:checked + .todo__card {
+  background-color: grey;
+}
+
+
+/* Checkbox element, when checked */
+input[type="checkbox"]:checked {
+}
+
+input[type="checkbox"] {
+  background: var(--color-overlay);
+}
+
+.notes__container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* .notes__container a {
+  display: unset;
+} */
+
 /* cards */
 .todo__card, .note__card {
-    display: flex;
-    justify-content: space-between;
-    border: none;
-    outline: 1px solid var(--color-btn-border);
-    border-radius: .5rem;
-    margin: 1rem 0;
-    padding: .5rem 1rem;
-    font-size: 1.2rem;
-    font-family: 'Inter', sans-serif;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: start;
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  outline: 1px solid var(--color-overlay);
+  box-shadow: 2px 4px 1px 1px var(--color-overlay);
+  border-radius: .5rem;
+  margin: 1rem 0;
+  padding: .5rem 1rem;
+  font-size: 1.2rem;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: start;
+}
+
+.card__title {
+  text-decoration: underline;
+}
+
+.checkbox-label__container {
+  align-items: center;
+  justify-content: flex-start;
+  gap: .5rem;
 }
 
 .btn__container {
-    gap: 1rem;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
 }
+
 
 /* Todos */
 /* .todo__card {} */
 
 /* Notes */
 .note__card {
-    aspect-ratio: 14/9;
-    max-width: 40%;
+    aspect-ratio: 5/3;
+    width: clamp(150px, 40%, 450px);
+}
+
+.note-card:hover, notes__container a {
+  outline: 1px solid var(--color-accent);
+  box-shadow: 2px 4px 1px 1px var(--color-accent);
 }
 
 

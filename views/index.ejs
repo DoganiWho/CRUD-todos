@@ -1,25 +1,30 @@
 <h2 class="page-header">Recently added</h2>
-<div class="recent todos__container">
-    <p class="subheader">Todos</p>
-    <% todos.forEach(todo => { %>
-        <div class="todo__card flex">
-            <label >
-                <input type="checkbox" class="check" >
-                <%= todo.name %>
-            </label>
-            <div class="btn__container flex">
-                <a href="/todos/<%= todo.id %>" class="btn btn--primary">View</a>
-                <a href="/todos/<%= todo.id %>/edit" class="btn btn--primary">Edit</a>
-                <%- include('./partials/deleteForm.ejs', { url: `/todos/${todo.id}` }) %>
-            </div>
-        </div>
-    <% })  %>
+<div class="recent">
+  <p class="subheader">Todos</p>
+  <% todos.forEach(todo => { %>
+    <div class="todo__card flex">
+      <div class="checkbox-label__container flex">
+        <input type="checkbox" class="check" name="<%= todo.name %>" id="<%= todo.id.slice(-4) %>" >
+        <label for="<%= todo.id.slice(-4) %>"><%= todo.name %></label>
+      </div>
+      <div class="btn__container flex">
+        <a href="/todos/<%= todo.id %>" class="btn btn--primary">View</a>
+        <a href="/todos/<%= todo.id %>/edit" class="btn btn--primary">Edit</a>
+        <%- include('./partials/deleteForm.ejs', { url: `/todos/${todo.id}` }) %>
+      </div>
+    </div>
+  <% })  %>
 </div>
-<div class="recent notes__container">
+<div class="recent ">
     <p class="subheader">Notes</p>
-    <% notes.forEach( note => { %>
-        <a href="/notes/<%= note.id %>">
-            <div class="note__card"><%= note.title %></div>
+    <div class="notes__container">
+      <% notes.forEach( note => { %>
+        <a href="/notes/<%= note.id %>" class="note__card">
+            <span class="card__title"><%= note.title %></span>
         </a>
-    <% }) %>
+      <% }) %>
+    </div>
 </div>
+
+
+      

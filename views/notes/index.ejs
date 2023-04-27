@@ -1,11 +1,16 @@
 <h2 class="page-header">Search Notes</h2>
-<form action="/notes" method="GET">
-    <label for="">Title</label>
-    <input type="text" name="title" value="<%= searchOptions.title %>">
-    <button type="submit" class="btn btn--primary">Search</button>
+<form class="search" action="/notes" method="GET">
+  <label for="title">Title
+    <input type="text" name="title" placeholder="Title" value="<%= searchOptions.title %>">
+  </label>
+  <button type="submit" class="btn btn--primary">Search</button>
 </form>
 <br>
 <h3 class="subheader">Notes</h3>
-<% notes.forEach( note => { %>
-    <div class="note__card"><%= note.title %></div>
-<% }) %>
+<div class="notes__container">
+  <% notes.forEach( note => { %>
+    <a href="/notes/<%= note.id %>" class="note__card">
+      <span class="card__title"><%= note.title %></span>
+    </a>
+  <% }) %>
+</div>
