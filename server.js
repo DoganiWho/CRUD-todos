@@ -50,5 +50,5 @@ app.use('/notes', notesrouter);
 app.listen(port
 
 || 3000, () => {
-    console.log(`app listening on http://localhost:${PORT || 3000}`);
+    console.log(`app listening on http://localhost:${port || 3000}`);
 })
