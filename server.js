@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 
 //DB connection
 const collection = 'todos'
-const MONGODB_URL = `mongodb+srv://DoganiWho:<password>@todo-notes.pi5f4k1.mongodb.net/${collection}`
+const MONGODB_URL = `mongodb+srv://DoganiWho:gl8OTHHDmVPzSMIG@todo-notes.pi5f4k1.mongodb.net/${collection}`
 const PORT = 8080
 const mongoose = require('mongoose');
 mongoose.connect(MONGODB_URL, {

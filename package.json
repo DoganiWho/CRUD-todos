@@ -23,7 +23,11 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.3",
+<<<<<<< Updated upstream
     "heroku": "^8.1.1",
+=======
+    "netlify-cli": "^14.3.1",
+>>>>>>> Stashed changes
     "nodemon": "^2.0.22"
   }
 }
