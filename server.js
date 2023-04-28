@@ -23,16 +23,18 @@ app.set('layout', 'layout/layout');
 app.use(expressLayouts);
 app.use(methodOverride('_method'));
 app.use(cors());
-// app.use(express.static('public'));
+
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 
 //DB connection
 const collection = 'todos'
-const MONGODB_URL = `mongodb+srv://DoganiWho:gl8OTHHDmVPzSMIG@todo-notes.pi5f4k1.mongodb.net/${collection}`
-const PORT = 8080
+const password = process.env.MONGODB_PASSWORD
+const MONGODB_URI = `mongodb+srv://DoganiWho:${password}@todo-notes.pi5f4k1.mongodb.net/${collection}`
+const port = process.env.PORT
+ 
 const mongoose = require('mongoose');
-mongoose.connect(MONGODB_URL, {
+mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true, 
     useUnifiedTopology: true
 })
@@ -45,6 +47,8 @@ app.use('/', indexRouter);
 app.use('/todos', todosRouter);
 app.use('/notes', notesrouter);
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(port
+
+|| 3000, () => {
     console.log(`app listening on http://localhost:${PORT || 3000}`);
 })
