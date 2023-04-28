@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.3",
+    "heroku": "^8.1.1",
     "nodemon": "^2.0.22"
   }
 }

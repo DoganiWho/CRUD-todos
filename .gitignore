@@ -10,3 +10,4 @@ node_modules/
 # Replit config files
 .replit
 replit.nix
+.upm
