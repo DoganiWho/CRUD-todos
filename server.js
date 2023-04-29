@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 const collection = 'todos'
 const password = process.env.MONGODB_PASSWORD
 const MONGODB_URI = `mongodb+srv://DoganiWho:${password}@todo-notes.pi5f4k1.mongodb.net/${collection}`
-const port = process.env.PORT
+const port = process.env.PORT 
  
 const mongoose = require('mongoose');
 mongoose.connect(MONGODB_URI, {
@@ -47,8 +47,7 @@ app.use('/', indexRouter);
 app.use('/todos', todosRouter);
 app.use('/notes', notesrouter);
 
-app.listen(port
-
-|| 3000, () => {
-    console.log(`app listening on http://localhost:${port || 3000}`);
+if (port == null || port == '') { port = 3000 }
+app.listen(port, () => {
+  console.log(`app listening on http://localhost:${port}`);
 })
