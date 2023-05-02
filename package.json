@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Building a CRUD todo-app with express and MongoDB",
   "main": "server.js",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "start": "node server.js",
     "devStart": "nodemon server.js"
