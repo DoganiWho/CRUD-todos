@@ -31,14 +31,17 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 const collection = 'todos'
 const password = process.env.MONGODB_PASSWORD
 const MONGODB_URI = `mongodb+srv://DoganiWho:${password}@todo-notes.pi5f4k1.mongodb.net/${collection}`
-const port = process.env.PORT 
+const port = process.env.PORT
  
 const mongoose = require('mongoose');
 mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true, 
     useUnifiedTopology: true
 })
+// .then(() => {'MongoDB Connected'})
+// .catch(err => console.error(err));
 const db = mongoose.connection
+
 db.on('error', error => console.error(error));
 db.once('open', () => console.log('Connected to Mongoose'))
 
