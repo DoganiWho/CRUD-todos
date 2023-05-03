@@ -4,7 +4,8 @@
   "description": "Building a CRUD todo-app with express and MongoDB",
   "main": "server.js",
   "engines": {
-    "node": "18.x"
+    "node": "18.x",
+    "npm": "9.x"
   },
   "scripts": {
     "start": "node server.js",
@@ -19,15 +20,14 @@
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-ejs-layouts": "^2.5.1",
-    "heroku-cli": "^7.0.9",
     "method-override": "^3.0.0",
     "mongoose": "^7.0.4",
-    "npm": "^9.6.5",
     "path": "^0.12.7"
   },
   "devDependencies": {
     "dotenv": "^16.0.3",
     "heroku": "^8.1.3",
+    "heroku-cli": "^7.0.9",
     "netlify-cli": "^14.3.1",
     "nodemon": "^2.0.22"
   }

@@ -2,7 +2,8 @@
 node_modules/
 .config
 .git
-.devcontainer
+.github/
+.devcontainer/
 
 # Local Netlify folder
 .netlify
